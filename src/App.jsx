@@ -1,6 +1,6 @@
-import '@assets/sass/App.scss';
 import { useState } from 'react';
 import TodoItem from '@core/components/TodoItem';
+import '@assets/sass/App.scss';
 
 function App() {
   const [todos, setTodos] = useState([]);

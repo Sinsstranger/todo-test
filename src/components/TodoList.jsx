@@ -1,7 +1,7 @@
-import TodoItem from '@core/components/TodoItem.jsx';
+import TodoItem from '@core/components/TodoItem';
 import PropTypes from 'prop-types';
 
-const TodoList = ({ todos, removeTodo, toggleTodoComplete }) => {
+function TodoList({ todos, removeTodo, toggleTodoComplete }) {
   return (
     <ul>
       {todos.map((todo) => (
@@ -14,7 +14,8 @@ const TodoList = ({ todos, removeTodo, toggleTodoComplete }) => {
       ))}
     </ul>
   );
-};
+}
+
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
   removeTodo: PropTypes.func.isRequired,
