@@ -46,8 +46,9 @@ module.exports = {
 	settings: {
 		react: { version: "18.2" }, // Указывает версию React для правил плагина
 		"import/resolver": {
-			node: { extensions: [".js", ".ts", ".jsx", ".tsx"] }, // Разрешает расширения
+			node: { extensions: [".js", ".ts", ".jsx", ".tsx"], paths: ['src'] }, // Разрешает расширения
 			alias: {
+        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
 				map: [
 					// Использует более описательное имя псевдонима
 					["@core", resolve(__dirname, "src")], // Псевдоним для основных компонентов

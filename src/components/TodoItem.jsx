@@ -10,12 +10,17 @@ const TodoItem = React.memo(({ todo, removeTodo, toggleTodoComplete }) => {
         onChange={() => toggleTodoComplete(todo.id)}
       />
       <span>{todo.text}</span>
-      <button onClick={() => removeTodo(todo.id)}>&times;</button>
+      <button
+        type="button"
+        onClick={() => removeTodo(todo.id)}>
+        &times;
+      </button>
     </li>
   );
 });
 
 TodoItem.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
   todo: PropTypes.object.isRequired,
   removeTodo: PropTypes.func.isRequired,
   toggleTodoComplete: PropTypes.func.isRequired,
