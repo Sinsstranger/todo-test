@@ -20,8 +20,11 @@ const TodoItem = React.memo(({ todo, removeTodo, toggleTodoComplete }) => {
 });
 
 TodoItem.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  todo: PropTypes.object.isRequired,
+  todo: PropTypes.objectOf({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
   removeTodo: PropTypes.func.isRequired,
   toggleTodoComplete: PropTypes.func.isRequired,
 };

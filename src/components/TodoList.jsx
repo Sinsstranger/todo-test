@@ -17,8 +17,13 @@ function TodoList({ todos, removeTodo, toggleTodoComplete }) {
 }
 
 TodoList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  todos: PropTypes.array.isRequired,
+  todos: PropTypes.arrayOf(
+    PropTypes.objectOf({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      completed: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
   removeTodo: PropTypes.func.isRequired,
   toggleTodoComplete: PropTypes.func.isRequired,
 };

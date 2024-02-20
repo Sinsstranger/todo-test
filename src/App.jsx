@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import TodoItem from '@core/components/TodoItem';
 import '@assets/sass/App.scss';
+import InputField from '@core/components/InputField';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -31,20 +32,11 @@ function App() {
 
   return (
     <>
-      <label htmlFor="input-text">
-        <input
-          type="text"
-          id="input-text"
-          name="input-text"
-          value={text}
-          onChange={changeInput}
-        />
-      </label>
-      <button
-        onClick={addTodo}
-        type="button">
-        AddTodo
-      </button>
+      <InputField
+        changeInput={changeInput}
+        text={text}
+        addTodo={addTodo}
+      />
       <ul>
         {todos.map((todo) => (
           <TodoItem
