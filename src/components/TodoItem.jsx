@@ -1,18 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { toggleTodoComplete, removeTodo } from '@store';
+import { useDispatch } from 'react-redux';
 
-const TodoItem = React.memo(({ todo, removeTodo, toggleTodoComplete }) => {
+const TodoItem = React.memo(({ todo }) => {
+  const dispatch = useDispatch();
   return (
     <li>
       <input
         type="checkbox"
         checked={todo.completed}
-        onChange={() => toggleTodoComplete(todo.id)}
+        onChange={() => dispatch(toggleTodoComplete({ id: todo.id }))}
       />
       <span>{todo.text}</span>
       <button
         type="button"
-        onClick={() => removeTodo(todo.id)}>
+        onClick={() => dispatch(removeTodo({ id: todo.id }))}>
         &times;
       </button>
     </li>
@@ -25,8 +28,6 @@ TodoItem.propTypes = {
     text: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired,
-  removeTodo: PropTypes.func.isRequired,
-  toggleTodoComplete: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

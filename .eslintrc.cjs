@@ -37,7 +37,7 @@ module.exports = {
 					// Использует более описательное имя псевдонима
 					["@core", resolve(__dirname, "src")], // Псевдоним для основных компонентов
 					["@assets", resolve(__dirname, "src/assets")], // Псевдоним для ресурсов
-          ["@reducers", resolve(__dirname, "src/reducers")],
+          ["@store", resolve(__dirname, "src/store")],
 				],
 			},
 		},

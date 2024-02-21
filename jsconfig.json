@@ -14,8 +14,8 @@
       "@core/*": [
         ""
       ],
-      "@reducers/*": [
-        "src/reducers/*"
+      "@store/*": [
+        "src/store/*"
       ]
     }
   }

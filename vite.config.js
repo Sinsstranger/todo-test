@@ -20,7 +20,7 @@ export default defineConfig({
     alias: {
       '@assets': resolve(__dirname, 'src/assets'),
       '@core': resolve(__dirname, 'src'),
-      '@reducers': resolve(__dirname, 'src/reducers'),
+      '@store': resolve(__dirname, 'src/store'),
     },
   },
 });
