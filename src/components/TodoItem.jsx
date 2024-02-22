@@ -12,7 +12,7 @@ const TodoItem = React.memo(({ todo }) => {
         checked={todo.completed}
         onChange={() => dispatch(toggleTodoComplete({ id: todo.id }))}
       />
-      <span>{todo.text}</span>
+      <span>{todo.title}</span>
       <button
         type="button"
         onClick={() => dispatch(removeTodo({ id: todo.id }))}>
@@ -25,7 +25,7 @@ const TodoItem = React.memo(({ todo }) => {
 TodoItem.propTypes = {
   todo: PropTypes.objectOf({
     id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired,
 };

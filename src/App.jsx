@@ -1,19 +1,19 @@
-import { useCallback, useState } from 'react';
-import TodoItem from '@core/components/TodoItem';
 import '@assets/sass/App.scss';
 import InputField from '@core/components/InputField';
-import TodoList from '@core/components/TodoList.jsx';
+import TodoList from '@core/components/TodoList';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [text, setText] = useState('');
-  const changeInput = (e) => setText(e.target.value);
-
+  const { status, error } = useSelector((state) => state.todos);
+  if (status === 'loading') {
+    return <h1>Loading...</h1>;
+  }
+  if (error) {
+    return <h1>{error}</h1>;
+  }
   return (
     <>
-      <InputField
-        changeInput={changeInput}
-        text={text}
-      />
+      <InputField />
       <TodoList />
     </>
   );

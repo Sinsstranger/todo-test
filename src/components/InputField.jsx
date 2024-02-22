@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addTodo } from '../store/TodoSlice';
+import { addTodo } from '@store';
 
 const InputField = React.memo(() => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const InputField = React.memo(() => {
       />
       <button
         type="button"
-        onClick={() => dispatch(addTodo({ text }))}>
+        onClick={() => dispatch(addTodo({ text })) && setText('')}>
         Add
       </button>
     </>

@@ -1,26 +1,62 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable no-param-reassign  */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchTodos = createAsyncThunk(
+  'todos/fetchTodos',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/todos?_limit=10',
+      );
+      if (!response.ok) {
+        throw new Error('Error fetching todos');
+      }
+      return await response.json();
+    } catch (e) {
+      rejectWithValue({ error: e });
+    }
+  },
+);
 
 const todoSlice = createSlice({
   name: 'todoItems',
-  initialState: [
-    { id: '1', text: 'Todo 1', completed: true },
-    { id: '2', text: 'Todo 2', completed: false },
-  ],
+  initialState: {
+    items: [],
+    status: null,
+    error: null,
+  },
   reducers: {
     addTodo: (state, action) => {
-      state.push({
+      state.items.push({
         id: new Date().toISOString(),
-        text: action.payload.text,
+        title: action.payload.text,
         completed: false,
       });
     },
     removeTodo: (state, action) => {
-      return state.filter((todo) => todo.id !== action.payload.id);
+      state.items = state.items.filter((todo) => todo.id !== action.payload.id);
     },
     toggleTodoComplete: (state, action) => {
-      const todo = state.find((todoItem) => todoItem.id === action.payload.id);
+      const todo = state.items.find(
+        (todoItem) => todoItem.id === action.payload.id,
+      );
       todo.completed = !todo.completed;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTodos.pending, (state) => {
+        state.status = 'loading';
+        state.error = null;
+      })
+      .addCase(fetchTodos.fulfilled, (state, action) => {
+        state.status = 'success';
+        state.items = action.payload;
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.status = 'error';
+        state.error = action.payload.error.message;
+      });
   },
 });
 

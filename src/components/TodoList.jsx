@@ -1,8 +1,14 @@
 import TodoItem from '@core/components/TodoItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTodos } from '@store';
+import { useEffect } from 'react';
 
 function TodoList() {
-  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchTodos());
+  }, [dispatch]);
+  const todos = useSelector((state) => state.todos.items);
   return (
     <ul>
       {todos.map((todo) => (
